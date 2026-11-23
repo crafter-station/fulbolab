@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { HideInObs, ObsProvider } from "@/components/layout/obs-context";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { ThemeProvider } from "@/components/layout/theme-context";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
       {
         url: "/og-image.png",
         width: 1200,
-        height: 675,
+        height: 630,
         alt: "FulboLab · Open Source por Crafter Station",
       },
     ],
@@ -53,10 +55,24 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} dark`}
+      suppressHydrationWarning
+      className={`${geist.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-screen antialiased selection:bg-[#E11D48] selection:text-white">
-        {children}
+      <head>
+        <script src="/theme-init.js" />
+      </head>
+      <body className="min-h-screen antialiased selection:bg-pulse selection:text-white">
+        <ThemeProvider>
+          <ObsProvider>
+            <div className="flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex flex-1 flex-col">{children}</div>
+              <HideInObs>
+                <SiteFooter />
+              </HideInObs>
+            </div>
+          </ObsProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

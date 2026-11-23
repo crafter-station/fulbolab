@@ -5,6 +5,8 @@
     "": {
       "name": "fulbolab",
       "dependencies": {
+        "@ui-sdk/core": "^0.1.0-beta.13",
+        "@ui-sdk/react": "^0.1.0-beta.13",
         "next": "16.4.6",
         "react": "19.3.0",
         "react-dom": "19.3.0",
@@ -165,6 +167,10 @@
     "@types/react": ["@types/react@19.3.0", "https://registry.k8s.vercel.security/npm/@types/react/-/react-19.3.0.tgz", { "dependencies": { "csstype": "^3.2.2" } }, "sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg=="],
 
     "@types/react-dom": ["@types/react-dom@19.3.0", "https://registry.k8s.vercel.security/npm/@types/react-dom/-/react-dom-19.3.0.tgz", { "peerDependencies": { "@types/react": "^19.3.0" } }, "sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q=="],
+
+    "@ui-sdk/core": ["@ui-sdk/core@0.1.0-beta.13", "https://registry.k8s.vercel.security/npm/@ui-sdk/core/-/core-0.1.0-beta.13.tgz", {}, "sha512-URjk9hqdc/cZKDtw6Gb9NqjY48U8l0EgoP4d5ghlooa3av+GrR0iSmsav133UU4oelcuKIO1ZPJ4j7gIPMr1Vg=="],
+
+    "@ui-sdk/react": ["@ui-sdk/react@0.1.0-beta.13", "https://registry.k8s.vercel.security/npm/@ui-sdk/react/-/react-0.1.0-beta.13.tgz", { "peerDependencies": { "@types/react": ">=19.2.10", "@ui-sdk/core": "^0.1.0-beta.13", "react": ">=19", "react-dom": ">=19" }, "optionalPeers": ["@types/react"] }, "sha512-Gz85tAcPJHwnv90WMIAtED3fDamqVD3F3FF3uKsA/TsL+KbaeHSgX1gGdIpNcnzkmDO8YZk9aZBKgCFgpaCcHA=="],
 
     "baseline-browser-mapping": ["baseline-browser-mapping@2.11.39", "https://registry.k8s.vercel.security/npm/baseline-browser-mapping/-/baseline-browser-mapping-2.11.39.tgz", { "bin": { "baseline-browser-mapping": "dist/cli.cjs" } }, "sha512-Q9buOYhr2ggrEZpImICecZTJHCCd8yXkRUokFlUEQ8uiD6oP82F4W4jWnhOHZYV+wlvrC51V7Wy0ULyWjil5Wg=="],
 

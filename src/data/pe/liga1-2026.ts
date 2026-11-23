@@ -39,8 +39,8 @@ export interface PlayoffScenario {
   highlight: TeamId[];
   probs: ScenarioProbability[];
   semi: {
-    teamA: { name: string; pct: string };
-    teamB: { name: string; pct: string };
+    teamA: { id: TeamId; name: string; pct: string };
+    teamB: { id: TeamId; name: string; pct: string };
     dates: string;
   };
   finalDates: string;
@@ -48,6 +48,77 @@ export interface PlayoffScenario {
 }
 
 export const LIGA1_2026_CUTOFF = "22 Nov 2026";
+
+export const TEAM_CODE: Record<TeamId, string> = {
+  alianza: "ALI",
+  u: "UNI",
+  huancayo: "SHU",
+  cristal: "CRI",
+};
+
+export const TEAM_CREST: Record<TeamId, string> = {
+  alianza: "/clubs/alianza.png",
+  u: "/clubs/u.png",
+  huancayo: "/clubs/huancayo.png",
+  cristal: "/clubs/cristal.png",
+};
+
+export interface H2HMatch {
+  phase: "Apertura" | "Clausura";
+  home: TeamId;
+  away: TeamId;
+  homeGoals: number;
+  awayGoals: number;
+}
+
+export const LIGA1_2026_H2H: H2HMatch[] = [
+  { phase: "Apertura", home: "u", away: "alianza", homeGoals: 1, awayGoals: 0 },
+  { phase: "Clausura", home: "alianza", away: "u", homeGoals: 1, awayGoals: 2 },
+  {
+    phase: "Apertura",
+    home: "huancayo",
+    away: "alianza",
+    homeGoals: 1,
+    awayGoals: 2,
+  },
+  {
+    phase: "Clausura",
+    home: "alianza",
+    away: "huancayo",
+    homeGoals: 2,
+    awayGoals: 1,
+  },
+  {
+    phase: "Apertura",
+    home: "u",
+    away: "huancayo",
+    homeGoals: 2,
+    awayGoals: 1,
+  },
+  {
+    phase: "Clausura",
+    home: "huancayo",
+    away: "u",
+    homeGoals: 4,
+    awayGoals: 1,
+  },
+  {
+    phase: "Apertura",
+    home: "alianza",
+    away: "cristal",
+    homeGoals: 1,
+    awayGoals: 1,
+  },
+  {
+    phase: "Clausura",
+    home: "cristal",
+    away: "alianza",
+    homeGoals: 3,
+    awayGoals: 2,
+  },
+  { phase: "Apertura", home: "cristal", away: "u", homeGoals: 2, awayGoals: 2 },
+  { phase: "Clausura", home: "u", away: "cristal", homeGoals: 1, awayGoals: 1 },
+];
 
 export const LIGA1_2026_TEAMS: TeamSeasonStats[] = [
   {
@@ -152,8 +223,8 @@ export const LIGA1_2026_SCENARIOS: Record<"real" | "cristal", PlayoffScenario> =
         },
       ],
       semi: {
-        teamA: { name: "Universitario", pct: "58%" },
-        teamB: { name: "Sport Huancayo", pct: "42%" },
+        teamA: { id: "u", name: "Universitario", pct: "58%" },
+        teamB: { id: "huancayo", name: "Sport Huancayo", pct: "42%" },
         dates: "Ida: 29 Nov (Huancayo) | Vuelta: 4 Dic (Monumental)",
       },
       finalDates: "Ida: 8 Dic | Vuelta: 13 Dic (Matute)",
@@ -214,8 +285,8 @@ export const LIGA1_2026_SCENARIOS: Record<"real" | "cristal", PlayoffScenario> =
         },
       ],
       semi: {
-        teamA: { name: "Universitario", pct: "53%" },
-        teamB: { name: "Sporting Cristal", pct: "47%" },
+        teamA: { id: "u", name: "Universitario", pct: "53%" },
+        teamB: { id: "cristal", name: "Sporting Cristal", pct: "47%" },
         dates: "Ida: Gallardo/Nacional | Vuelta: Monumental",
       },
       finalDates: "Final Alianza vs Cristal sería 55% / 45%",
