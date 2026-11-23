@@ -334,7 +334,7 @@ export function H2HTriangle({ scenarioKey }: { scenarioKey: ScenarioKey }) {
                           y1={seg.y1}
                           x2={seg.x2}
                           y2={seg.y2}
-                          stroke={on ? "#fafafa" : "#3f3f46"}
+                          stroke={on ? "var(--c-chalk)" : "var(--c-mute)"}
                           strokeWidth={on ? 2 : 1}
                           strokeDasharray={d.dominant ? undefined : "6 8"}
                           vectorEffect="non-scaling-stroke"
@@ -342,7 +342,7 @@ export function H2HTriangle({ scenarioKey }: { scenarioKey: ScenarioKey }) {
                         {d.dominant && (
                           <polygon
                             points={arrowHead(winFrom, winTo)}
-                            fill={on ? "#f59e0b" : "#52525b"}
+                            fill={on ? "var(--c-gol)" : "var(--c-dim)"}
                           />
                         )}
                       </g>
@@ -369,19 +369,24 @@ export function H2HTriangle({ scenarioKey }: { scenarioKey: ScenarioKey }) {
                           key={node.key}
                           value={node.key}
                           aria-label={t.name}
-                          className={`group absolute flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-line-strong bg-ink font-mono text-[11px] font-medium text-fog outline-none transition-[color,border-color,opacity] hover:border-fog hover:text-chalk data-selected:border-chalk data-selected:bg-chalk data-selected:text-ink sm:h-14 sm:w-14 sm:text-[12px] ${dim ? "opacity-45" : ""}`}
+                          className={`group absolute flex h-13 w-13 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-line-strong bg-surface outline-none transition-[border-color,box-shadow,opacity,transform] hover:scale-105 hover:border-fog data-selected:scale-105 data-selected:border-chalk data-selected:ring-2 data-selected:ring-chalk/25 sm:h-15 sm:w-15 ${dim ? "opacity-45" : ""}`}
                           style={{
                             left: `${(v.x / W) * 100}%`,
                             top: `${(v.y / H) * 100}%`,
                           }}
                         >
-                          {TEAM_CODE[id]}
+                          <ClubCrest
+                            id={id}
+                            name={t.name}
+                            size={30}
+                            className="h-7 w-7 sm:h-8 sm:w-8"
+                          />
                           <span
-                            className="absolute -top-1 right-0 h-2 w-2 rounded-full ring-2 ring-ink"
+                            className="absolute -top-0.5 right-0.5 h-2 w-2 rounded-full ring-2 ring-ink"
                             style={{ backgroundColor: t.color }}
                           />
                           <span
-                            className={`pointer-events-none absolute left-1/2 -translate-x-1/2 font-sans text-[12px] whitespace-nowrap text-fog group-data-selected:text-chalk ${node.index === 0 ? "-top-6" : "-bottom-6"}`}
+                            className={`pointer-events-none absolute left-1/2 -translate-x-1/2 font-sans text-[12px] font-medium whitespace-nowrap text-fog group-data-selected:text-chalk ${node.index === 0 ? "-top-6" : "-bottom-6"}`}
                           >
                             {t.shortName}
                           </span>
