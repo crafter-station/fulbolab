@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" style="color:#0B1220;--acc:#E11D48;--acc2:#F59E0B;--bg:#F8FAFC">
+  <g id="pitch" stroke="currentColor" stroke-width="5">
+    <line x1="32" y1="12" x2="32" y2="52"/>
+    <circle cx="32" cy="32" r="11"/>
+  </g>
+  <g id="pulse-cut">
+    <polyline points="6,44 18,34 25,40 32,32 58,18" stroke="var(--bg,#F8FAFC)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="frame" stroke="currentColor" stroke-width="5">
+    <rect x="6" y="12" width="52" height="40" rx="7"/>
+  </g>
+  <g id="pulse">
+    <polyline points="6,44 18,34 25,40 32,32 58,18" stroke="var(--acc,#E11D48)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="core">
+    <circle cx="32" cy="32" r="8.5" fill="var(--bg,#F8FAFC)"/>
+    <circle cx="32" cy="32" r="5" fill="var(--acc2,#F59E0B)"/>
+  </g>
+</svg>

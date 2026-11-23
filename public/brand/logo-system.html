@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>fulbolab logo system</title>
+<link rel="icon" type="image/svg+xml" href="favicon-16.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F8FAFC;--ink:#0B1220;--pitch:#070B14;--acc:#E11D48;--acc2:#F59E0B;--line:#E2E8F0;--line-d:#1E293B;--mute:#64748B}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font:500 14px/1.5 "JetBrains Mono",monospace;padding:48px 24px}
+main{max-width:1100px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+header p{color:var(--mute);font-size:12px;max-width:520px}
+h1{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:56px 0 16px;border-top:1px solid var(--line);padding-top:12px;font-weight:500}
+.row{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.card{--bg:var(--paper);background:var(--paper);border:1px solid var(--line);padding:28px;display:grid;place-items:center;align-content:center;min-height:180px;flex:1 1 240px}
+.card small{display:block;margin-top:14px;color:var(--mute);font-size:11px;text-align:center}
+.dark{--bg:var(--pitch);background:var(--pitch);border-color:var(--line-d);color:var(--paper)}
+.dark small{color:#94A3B8}
+.acc{--bg:var(--acc);background:var(--acc);border-color:var(--acc)}
+.mark{color:var(--ink)} .dark .mark{color:var(--paper)}
+.lock{display:inline-flex;align-items:center;gap:.28em;line-height:1}
+.lock svg{height:1.05em;width:auto;flex:none}
+.word{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.045em;line-height:1}
+.word i{font:400 .86em "JetBrains Mono",monospace;letter-spacing:-.04em;color:var(--acc);font-style:normal;margin-left:.02em}
+.blur{filter:blur(3px)}
+.scale{display:flex;gap:28px;align-items:end;flex-wrap:wrap}
+.scale figure{display:grid;justify-items:center;gap:8px;font-size:10px;color:var(--mute)}
+.note{font-size:12px;color:var(--ink);background:var(--paper);border-left:3px solid var(--acc);padding:10px 14px;margin-top:16px;max-width:none;text-align:left}
+.note b{font-weight:700}
+.zoom{image-rendering:pixelated}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:12px;text-align:left;width:100%}
+.ok{color:#15803D}.ko{color:var(--acc)}.meh{color:#B45309}
+
+.pulse-line,.pulse-cut{stroke-dasharray:var(--dash,none);stroke-dashoffset:0;animation:var(--draw,none) 2.4s cubic-bezier(.7,0,.2,1) infinite}
+.core{transform-box:fill-box;transform-origin:center;animation:var(--pop,none) 2.4s cubic-bezier(.7,0,.2,1) infinite}
+.anim{--dash:100 110;--draw:draw;--pop:pop}
+@keyframes draw{0%,12%{stroke-dashoffset:108;opacity:0}13%{opacity:1}58%,100%{stroke-dashoffset:0}}
+@keyframes pop{0%,52%{transform:scale(0)}66%{transform:scale(1.35)}76%,100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.anim{--draw:none;--pop:none;--dash:none}}
+
+.obs{position:relative;width:100%;aspect-ratio:16/9;background:#1A2333;overflow:hidden;border:1px solid var(--line-d)}
+.obs .cam{position:absolute;inset:0;display:grid;place-items:center;color:#475569;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.lower{--bg:var(--pitch);position:absolute;left:24px;right:24px;bottom:24px;background:var(--pitch);color:var(--paper);display:flex;align-items:center;gap:18px;padding:14px 18px;border-left:4px solid var(--acc)}
+.lower .lock{font-size:26px}
+.lower .sep{width:1px;align-self:stretch;background:var(--line-d)}
+.lower .live{font-size:12px;color:#CBD5E1;line-height:1.4}
+.lower .live b{color:var(--acc2);font-weight:700}
+.lower .url{margin-left:auto;font-size:13px;color:#94A3B8}
+.bug{--bg:var(--pitch);position:absolute;top:20px;right:20px;background:var(--pitch);padding:8px;display:grid;place-items:center}
+.tag{position:absolute;top:20px;left:20px;background:var(--acc);color:#fff;font-size:11px;font-weight:700;padding:4px 8px;letter-spacing:.08em}
+pre{font:500 14px/1.6 "JetBrains Mono",monospace;color:var(--paper);white-space:pre}
+.dim{color:#64748B}.c{color:var(--acc)}.g{color:var(--acc2)}
+</style></head><body><main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="fl" viewBox="0 0 64 64">
+   <g class="pitch" fill="none" stroke="currentColor" stroke-width="5"><line x1="32" y1="12" x2="32" y2="52"/><circle cx="32" cy="32" r="11"/></g>
+   <g class="pulse" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline class="pulse-cut" pathLength="100" points="6,44 18,34 25,40 32,32 58,18" stroke="var(--bg)" stroke-width="13"/>
+   </g>
+   <g class="frame" fill="none" stroke="currentColor" stroke-width="5"><rect x="6" y="12" width="52" height="40" rx="7"/></g>
+   <g class="pulse" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline class="pulse-line" pathLength="100" points="6,44 18,34 25,40 32,32 58,18" stroke="var(--acc)" stroke-width="5"/>
+   </g>
+   <g class="core"><circle cx="32" cy="32" r="8.5" fill="var(--bg)"/><circle cx="32" cy="32" r="5" fill="var(--acc2)"/></g>
+  </symbol>
+ </defs>
+</svg>
+
+<header>
+ <span class="lock mark" style="font-size:40px"><svg viewBox="0 0 64 64"><use href="#fl"/></svg><span class="word">fulbo<i>lab</i></span></span>
+ <p>fulbolab.com · laboratorio abierto de calculadoras, simuladores y comparadores de fútbol para streamers y comunidades LATAM. Open source, sin anuncios, hecho en Perú por Crafter Station.</p>
+</header>
+
+<h1>01 · Tiers (lockup, símbolo, avatar)</h1>
+<div class="row">
+ <div class="card" style="flex:2 1 420px"><span class="lock mark" style="font-size:68px"><svg viewBox="0 0 64 64"><use href="#fl"/></svg><span class="word">fulbo<i>lab</i></span></span><small>lockup / wordmark · Space Grotesk 700 + JetBrains Mono 400</small></div>
+ <div class="card"><svg class="mark" width="120" height="120"><use href="#fl"/></svg><small>símbolo solo</small></div>
+ <div class="card acc"><svg width="120" height="120" style="color:#fff;--acc:var(--pitch);--acc2:#fff"><use href="#fl"/></svg><small style="color:#fff">avatar / app icon sobre acento</small></div>
+</div>
+
+<h1>02 · Escala real (16 · 24 · 32 · 64 · 200 px)</h1>
+<div class="row">
+ <div class="card" style="flex:3 1 640px;place-items:start">
+  <div class="scale">
+   <figure><svg class="mark" width="16" height="16"><use href="#fl"/></svg>16</figure>
+   <figure><svg class="mark" width="24" height="24"><use href="#fl"/></svg>24</figure>
+   <figure><svg class="mark" width="32" height="32"><use href="#fl"/></svg>32</figure>
+   <figure><svg class="mark" width="64" height="64"><use href="#fl"/></svg>64</figure>
+   <figure><svg class="mark" width="200" height="200"><use href="#fl"/></svg>200</figure>
+  </div>
+  <p class="note"><b>16 px:</b> el símbolo encogido se vuelve una mancha: el corte del pulso y el anillo del punto miden ~1 px y se funden; el círculo central se cierra sobre el punto. Sirve como silueta (rectángulo + diagonal roja) pero no como marca. <b>Desde 24 px</b> ya se leen cancha, pulso y punto. Por eso el favicon se diseña aparte.</p>
+ </div>
+ <div class="card dark" style="flex:1 1 300px">
+  <div class="scale" style="align-items:end">
+   <figure><img src="favicon-16.svg" width="16" height="16" alt="">16</figure>
+   <figure><img class="zoom" src="favicon-16.svg" width="32" height="32" alt="">×2</figure>
+   <figure><img class="zoom" src="favicon-16.svg" width="96" height="96" alt="">×6</figure>
+  </div>
+  <small>favicon-16.svg dedicado: grid de 16, contorno de cancha 1.5 px + pulso rojo 2 px, sin línea media ni punto. En tab oscura el tile se funde y queda la cancha.</small>
+ </div>
+ <div class="card" style="flex:1 1 300px">
+  <div class="scale" style="align-items:end">
+   <figure><img src="favicon-16.svg" width="16" height="16" alt="">16</figure>
+   <figure><img class="zoom" src="favicon-16.svg" width="32" height="32" alt="">×2</figure>
+   <figure><img class="zoom" src="favicon-16.svg" width="96" height="96" alt="">×6</figure>
+  </div>
+  <small>mismo favicon sobre pestaña clara: el tile oscuro lo protege</small>
+ </div>
+</div>
+
+<h1>03 · Una tinta, reversed, squint test</h1>
+<div class="row">
+ <div class="card" style="--acc:var(--ink);--acc2:var(--ink)"><svg class="mark" width="100" height="100"><use href="#fl"/></svg><small>1 tinta</small></div>
+ <div class="card dark" style="--acc:var(--paper);--acc2:var(--paper)"><svg class="mark" width="100" height="100"><use href="#fl"/></svg><small>reversed 1 tinta</small></div>
+ <div class="card"><svg class="mark blur" width="100" height="100"><use href="#fl"/></svg><small>blur 3px: ¿sigue siendo fulbolab?</small></div>
+ <div class="card dark"><svg class="mark blur" width="100" height="100"><use href="#fl"/></svg><small>blur 3px sobre pitch</small></div>
+</div>
+<div class="row" style="margin-top:24px">
+ <div class="card dark" style="flex:2 1 520px"><span class="lock mark" style="font-size:52px"><svg viewBox="0 0 64 64"><use href="#fl"/></svg><span class="word">fulbo<i>lab</i></span></span><small>wordmark dark · Obsidian Pitch #070B14</small></div>
+ <div class="card" style="flex:1 1 300px">
+  <div class="verdict">
+   <span>#E11D48 / paper</span><span class="meh">4.49:1 · gráfico y texto grande OK, texto chico no</span>
+   <span>#E11D48 / pitch</span><span class="meh">4.19:1 · gráfico OK, "lab" solo ≥24px</span>
+   <span>#F59E0B / paper</span><span class="ko">2.05:1 · el punto se pierde en claro</span>
+   <span>#F59E0B / pitch</span><span class="ok">9.16:1</span>
+   <span>#FFF / #E11D48</span><span class="ok">4.70:1 · avatar OK</span>
+  </div>
+  <small>contraste medido (WCAG relativo)</small>
+ </div>
+</div>
+
+<h1>04 · Motion: el pulso se dibuja y enciende el centro (2.4s loop, reduced-motion = estático)</h1>
+<div class="row">
+ <div class="card anim"><svg class="mark" width="160" height="160"><use href="#fl"/></svg><small>símbolo · frame final = logo estático</small></div>
+ <div class="card anim dark" style="flex:2 1 520px"><span class="lock mark" style="font-size:60px"><svg viewBox="0 0 64 64"><use href="#fl"/></svg><span class="word">fulbo<i>lab</i></span></span><small>sting para intro de stream / reels</small></div>
+</div>
+
+<h1>05 · Stream / OBS overlay + CLI (mock de concepto)</h1>
+<div class="row">
+ <div class="card" style="flex:1 1 100%;padding:0;border:0">
+  <div class="obs">
+   <div class="cam">cámara del streamer · 1920×1080</div>
+   <span class="tag">EN VIVO</span>
+   <div class="bug"><svg class="mark anim" width="40" height="40" style="color:var(--paper)"><use href="#fl"/></svg></div>
+   <div class="lower">
+    <span class="lock" style="color:var(--paper)"><svg viewBox="0 0 64 64"><use href="#fl"/></svg><span class="word">fulbo<i>lab</i></span></span>
+    <span class="sep"></span>
+    <span class="live">Simulador de playoffs · Liga 1 2026<br><b>Universitario 62%</b> · Alianza 24% · Cristal 14%</span>
+    <span class="url">fulbolab.com</span>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="row" style="margin-top:24px">
+ <div class="card dark" style="place-items:start;flex:1 1 100%"><pre><span class="c">╱</span><span class="g">●</span> <b>fulbo</b><span class="c">lab</span>  <span class="dim">v0.1.0 · open source · sin anuncios · hecho en Perú</span>
+
+<span class="dim">$</span> bunx fulbolab sim --liga peru-1 --fecha 14
+<span class="dim">  ├─</span> 10 000 simulaciones <span class="dim">·</span> <span class="g">●</span> listo en 1.2s
+<span class="dim">  └─</span> abre <span class="c">fulbolab.com/sim/peru-1</span> en OBS como fuente de navegador</pre></div>
+</div>
+
+</main></body></html>
